@@ -1,0 +1,20 @@
+
+<div class = "container" style = "height: 100%">
+	<div id = "userListContainer" style = "margin-top: 70px; border-radius: 5px; width: 10px; height: 10px; background-color: rgba(66, 139, 202, 0.3); padding: 0; margin-left: auto; margin-right: auto; overflow: hidden; position: relative; ">
+		<div id = "userCol1" class = "col-xs-6" style = "height: 100%;">
+			<% $index = 0 %>
+			<% while $index < current_user.friends.size do %>
+				<% p current_user.friends[$index] %>
+				<%= render 'partials/user_info', user: current_user.friends[$index], friend_status: 'accepted' %>
+				<% $index += 2 %>
+			<% end %>
+		</div>
+		<div id = "userCol2" class = "col-xs-6" style = "height: 100%;">
+			<% $index = 1 %>
+			<% while $index < current_user.friends.size do %>
+				<%= render 'partials/user_info', user: current_user.friends[$index], friend_status: 'accepted' %>
+				<% $index += 2 %>
+			<% end %>
+		</div>
+	</div>
+</div>

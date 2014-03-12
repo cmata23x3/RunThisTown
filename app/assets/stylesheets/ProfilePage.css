@@ -1,0 +1,102 @@
+/*@font-face { font-family: Sanchez Regular; src: url('fonts/Sanchezregular.otf'); } */
+
+html {
+	background-color: antiquewhite;
+}
+body {
+	font-family: Sanchez Regular;
+	background: transparent;	
+}
+
+legend {
+	border-color: grey;
+}
+
+#profileContainer {
+	background-color: rgba(204, 204, 204, 0.5);
+	margin-top: 90px;
+/*	position: fixed;
+	left: 10px;
+	right: 10px;*/
+	border-radius: 10px;
+/*	height: -moz-calc(100% - 120px);
+	height: -webkit-calc(100% - 120px);
+	height: -o-calc(100% - 120px);
+	height: calc(100% - 120px);*/
+	/*width: -moz-calc(100% - 20px);
+	width: -webkit-calc(100% - 20px);
+	width: -o-calc(100% - 20px);
+	width: calc(100% - 20px);
+	max-height: 839px;*/
+}
+.leftSection {
+	display: inline-block;
+}
+.rightSection {
+	height: 100%;
+}
+.statVal {
+	position: absolute;
+	right: 15px;
+}
+.stat { margin-bottom: 15px; }
+.statContainer { 
+	position: relative;
+	overflow: auto;
+	padding: 5px;
+}
+.routeContainer {
+	height: auto;
+	overflow: auto;
+	margin-bottom: 0;
+}
+#goalsPlus { opacity: 0.5; top: 13px;}
+#goalsPlus:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+.profRouteEntry { position: relative; overflow: hidden; height: 40px; cursor: pointer; }
+.profRouteEntry:hover { background-color: white; }
+.wptsList { 
+	height: -moz-calc(100% - 41px);
+	height: -webkit-calc(100% - 41px);
+	height: -o-calc(100% - 41px);
+	height: calc(100% - 41px);
+	overflow: auto;
+ }
+ .profConfirmRoute:hover {
+ 	opacity: 1;
+ };
+
+  .profDeleteRoute:hover {
+ 	opacity: 1;
+ };
+
+  .profRemoveRoute:hover {
+ 	opacity: 1;
+ };
+
+ #profPicCont {
+ 	cursor: pointer;
+ }
+ #routeVisualizationContainer {
+ 	background-color: rgba(0, 0, 0, 0.1);
+ 	height: 0px; 
+ 	border-radius: 10px;
+ 	overflow: hidden;
+ }
+
+.chart rect{
+	fill: #3276b1;
+	stroke: white;
+}
+.chart text{
+	font: 20px Sanchez;
+}
+.chart line{
+	stroke: #ccc;
+}
+.chart .barLabel{
+	fill: white;
+}
+

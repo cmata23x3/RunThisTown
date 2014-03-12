@@ -1,0 +1,35 @@
+<div style = "display: block; margin-left: auto; margin-right: auto; text-align: center; margin-top: 60px;">  
+  <h1>Sign up</h1>
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div><%= f.label :email %><br>
+    <%= f.email_field :email, :autofocus => true, :autofocus => true, :class => "userInput", :style => "float: none" %></div>
+    <br>
+
+    <div><%= f.label :first_name %><br>
+    <%= f.text_field :first_name, :autofocus => true, :class => "userInput", :style => "float: none" %></div>
+    <br>
+
+    <div><%= f.label :last_name %><br>
+    <%= f.text_field :last_name, :autofocus => true, :class => "userInput", :style => "float: none" %></div>
+    <br>
+
+    <div><%= f.label :age %><br>
+    <%= f.text_field :age, :autofocus => true, :class => "userInput", :style => "float: none" %></div>
+    <br>
+
+    <div><%= f.label :password %><br>
+    <%= f.password_field :password, :class => "userInput", :style => "float: none" %></div>
+    <br>
+
+    <div><%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation, :class => "userInput", :style => "float: none" %></div>
+    <br>
+
+    <button class = "btn btn-warning"><%= f.submit :style => "border: 0; background-color: transparent; color: white; ", :value => "Sign up" %></button>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

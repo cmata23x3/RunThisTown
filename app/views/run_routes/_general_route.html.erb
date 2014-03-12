@@ -1,0 +1,27 @@
+<div class = "profRouteEntry well well-sm">
+	<div class = "profRunRouteInfo" style = "display: inline-block; width: 49%; ">
+		<p class = "profRouteName">Name: <span><%= @run_route.name %></span></p>
+		<p class = "profRouteDistance">Distance Traveled: <span class = "profRouteDistanceVal"><%= @run_route.distance %></span></p>
+		<p class = "profCaloriesBurned">Calories Burned: <span class = "profCaloriesBurnedVal">
+			<% if (current_user.weight != nil) %>
+				<%= (current_user.weight * 0.75 * @run_route.distance.to_f).round.to_s + " cal" %>
+			<% end %>
+			</span></p>
+		<p class = "profRouteStart">Start: <span><%= @run_route.locations[0].name %></span></p>
+		<p class = "profRouteEnd">End: <span><%= @run_route.locations[-1].name %></span></p>
+	</div>
+	<div class = "profWaypointsContainer" style = "display: inline-block; width: 49%; height: 100%; position: absolute; top: 0; ">
+		<p style = "margin-top: 10px; text-align: center; " class = "profRouteDate">Date: <span class = "profRouteDateVal"><%= @run_route.created_at.to_s %></span></p>
+		
+		<div class = "wptsList">
+			<legend><h4 style = "text-align: center; font-family: Sanchez Regular">Waypoints Visited:</h4></legend>
+			<ol>
+				<% if @run_route.locations.size > 2 %>
+					<% (1..(@run_route.locations.size - 2)).each do |i| %>
+						<li><%= @run_route.locations[i].name %></li>
+					<% end %>
+				<% end %>
+			</ol>
+		</div>
+	</div>
+</div>

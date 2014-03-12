@@ -1,0 +1,36 @@
+<% user = User.find(@friend_id) %>
+
+<div id = "profileContainer" class = "container">
+	<div class = "col-md-3 leftSection" >
+		<div style = "padding-top: 15px; padding-bottom: 15px; width: 100%; height: 100%">
+			<div id = "profPicCont" style = "position: relative; ">
+				<% if user.avatar_file_name == nil %>
+					<%= image_tag "ProfPic.jpg", :style => "width: 100%"%>
+				<% else %>
+					<%= image_tag user.avatar.url, :style => "width: 100%"%>
+   				<% end %>
+			</div>
+			<legend style = "border-color: grey; "><h1 id = "name" style = "text-align: center; margin-bottom: 15px; font-family: Sanchez"><%= user.get_name %></h1></legend>
+			<div class = "stat"><legend style = "border-bottom-color: grey; "><h2 style = "font-family: Sanchez; margin-top: 0; ">Stats</h2></legend></div>
+			<div id = "statContainer">
+				<div class = "stat"><p id = "totalDistanceStat" class = "statVal">0 mi</p> <%= image_tag "RunningMan.png", :id => "totalDistIcon", :style  => "width: 16px", :title => "Total distance run" %></div>
+
+				<div class = "stat"><p id = "longestRunStat" class = "statVal">0 mi</p><span id = "longestRunIcon" class = "glyphicon glyphicon-road" data-toggle = "tooltip" title = "Longest Run"></span></div>
+
+				<div class = "stat"><p id = "totalCalStat" class = "statVal">0 cal</p><span id = "totalCalIcon" class = "glyphicon glyphicon-fire" data-toggle = "tooltip" title = "Total Calories Burned"></span></div>
+			</div>
+		</div>
+	</div>
+
+	<div class = "col-md-9 rightSection" style = "height: auto; ">
+		<div style = "padding-top: 15px; padding-bottom: 15px; width: 100%; height: 100%">
+			<div class = "routeContainer well" style = "margin-bottom: 0; ">
+				<h1 style = "text-align: center; font-family: Sanchez">My Routes</h1>
+				<% user.run_routes.each do |route| %>
+						<% @run_route = route %>
+						<%= render 'run_routes/general_route', :object => @run_route %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

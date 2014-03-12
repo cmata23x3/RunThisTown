@@ -1,0 +1,35 @@
+<div class="modal-body" style = "text-align: center">
+  <p>Input your information below</p><br>
+
+  <div style = 'display: inline-block; text-align: left; min-width: 450px;'>
+      <%= form_for(:user, :url => registration_path(:user)) do |f| %>
+
+      <div><%= f.label :email, :style => "font-weight: normal" %>
+      <%= f.email_field :email, :autofocus => true, :autofocus => true , :class => "userInput" %></div>
+      <br>
+
+      <div><%= f.label :first_name, :style => "font-weight: normal" %>
+      <%= f.text_field :first_name, :autofocus => true , :class => "userInput" %></div>
+      <br>
+
+      <div><%= f.label :last_name, :style => "font-weight: normal" %>
+      <%= f.text_field :last_name, :autofocus => true , :class => "userInput" %></div>
+      <br>
+
+      <div><%= f.label :age, :style => "font-weight: normal" %>
+      <%= f.text_field :age, :autofocus => true, :class => "userInput" %></div>
+      <br>
+
+      <div><%= f.label :password, :style => "font-weight: normal" %>
+      <%= f.password_field :password , :class => "userInput" %></div>
+      <br>
+
+      <div><%= f.label :password_confirmation, :style => "font-weight: normal" %>
+      <%= f.password_field :password_confirmation , :class => "userInput" %></div>
+  </div>
+</div>
+<div class="modal-footer">
+  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+  <button type="button" class="btn btn-warning"><%= f.submit :style => "background-color: transparent; border:none; color: white", :value => "Create Account" %></button>
+  <% end %>
+</div>

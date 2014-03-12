@@ -1,0 +1,16 @@
+<div style = "display:block; margin-left: auto; margin-right: auto; text-align: center">
+	<div class = "alert alert-warning">Use this form if you've forgotten your password</div>
+	<h1 style = "font-family: Sanchez, serif">Forgot your password?</h1>
+
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+	  <div style = "font-family: Sanchez, serif"><%= devise_error_messages! %></div>
+
+	  <div><h4 style = "font-family: Sanchez, serif"><%= f.label :email %></h4>
+	  <%= f.email_field :email, :autofocus => true, :class => "userInput", :style => "float: none;" %></div>
+	  <br>
+	  <div><%= f.submit :class => "btn btn-warning", :value => "Send me reset password instructions" %></div>
+	  <br>
+	<% end %>
+
+	<%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+	<div id = "navigator">
+		<br><span id = "homeBullet" class = "navBullet glyphicon glyphicon-home" data-toggle="tooltip" title="Home"></span><br><br><br>
+		<div id = "navBullet1" class = "navBullet" data-toggle="tooltip" title="Routes"></div><br><br><br>
+		<div id = "navBullet2" class = "navBullet" data-toggle="tooltip" title="People"></div><br><br><br>
+		<div id = "navBullet3" class = "navBullet" data-toggle="tooltip" title="Progress"></div><br><br>
+	</div> 
+
+	<div class="modal fade" id = "signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "font-family: Sanchez, serif; ">
+		<div class="modal-dialog modal-dialog-center" style = "width: 700px;">
+			<div class="modal-content" style = "background-color: beige">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" style = "font-family: Sanchez, serif">Sign up here!</h4>
+				</div>
+				<%= render 'partials/registration' %>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+<div id="landingPage">
+	<div class = "jumbotron masthead" style = "box-sizing: content-box">
+		<!-- <div class = "jumbotronBg"></div> -->
+		<div class = "container">
+			<h1 style = "font-family: Sanchez, serif">Let's Run This Town</h1>
+			<p>Get fit together, see more of your city</p>
+			<button id = "getStarted" class = "yellow btn btn-large" data-toggle="modal" data-target="#signUpModal">Get Started</button>
+			<div id = 'learnMoreDiv'>
+				<div><p>Learn more below</p></div>
+				<!-- <i class = "icon-chevron-down icon-white"></i> -->
+				<span id = "learnMoreChevron" class = "glyphicon glyphicon-chevron-down"></span>
+			</div>
+		</div>
+	</div>
+	<div id = "infoSection1" class = "infoSection">
+		<div style = 'padding: 20px; height: inherit'>
+			<span id = "toHomeChevron" class = "navChevron glyphicon glyphicon-chevron-up"></span>
+			<h1 style = "color: white; font-family: Sanchez, serif; font-size: 66pt; font-weight: bolder; margin-top: 0">Plan your routes</h1>
+
+			<div class = "col-xs-6"><%= image_tag "BostonMap.png", :style => "width: 100%; ", :id => "homePageBostonMap", :class => "img-thumbnail" %></div>
+			<div class = "col-xs-6" style = "font-size: 20pt; font-weight: normal">
+				<p>Plan out the your route in a matter of clicks!</p>
+				<p>Simply click on the map at the place you want to visit, or input an address to add the point to your waypoint list</p>
+				<p>You can choose the points in any order you like, or ask us to order the points so your run is as short as possible.</p>
+			</div>
+
+			<div class = "bottomNav"><span id = "toSection2DownChevron" class = "navChevron glyphicon glyphicon-chevron-down"></span></div>
+		</div>
+	</div>
+	<div id = "infoSection2" class = "infoSection">
+		<div style = 'padding: 20px; height: inherit'>
+			<span id = "toSection1UpChevron" class = "navChevron glyphicon glyphicon-chevron-up"></span>
+			<h1 style = "color: white; font-family: Sanchez, serif; font-size: 66pt; font-weight: bolder; margin-top: 0">Meet new people</h1>
+			<h1 style = "margin-left: 10%; background-color: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 10px; ">Running together feels better</h1>
+			<div style = "margin-top: 4%; ">
+				<span class = "glyphicon glyphicon-user" style = "margin-left: 15%; font-size: 165px; " ></span>
+				<span style = "font-size: 145px; ">+</span>
+			</div>
+			<div class = "container" style = "background-color: rgba(0, 0, 0, 0.5); border-radius: 15px; ">
+				<p style = "font-weight: lighter; ">Get motivated to get fit, by finding people who want to do the same. Search for routes created by other users, and run with these people if the route interests you.</p>
+			</div>
+			<div class = "bottomNav"><span id = "toSection3DownChevron" class = "navChevron glyphicon glyphicon-chevron-down"></span></div>
+		</div>
+	</div>
+	<div id = "infoSection3" class = "infoSection">
+		<div style = 'padding: 20px; height: inherit'>
+			<span id = "toSection2UpChevron" class = "navChevron glyphicon glyphicon-chevron-up"></span>
+			<h1 style = "color: white; font-family: Sanchez, serif; font-size: 66pt; font-weight: bolder; margin-top: 0">Keep track of your progress</h1>
+			<h1 style = "margin-left: 10%; ">Set some goals for yourself</h1>
+			<div class = "container">
+				<div class = "row" style = "padding: 20px 0 20px 0px; ">
+					<div class = "col-xs-6">
+						<%= image_tag "RunningMan.png", :id => "landingSection3Icon1", :class => "landingSection3Icon", :title => "Total distance run" %>
+					</div>
+					<div class = "col-xs-6"><h2>Want to run a 5k? A 10k? A marathon?</h2></div>
+				</div>
+				<div class = "row" style = "padding: 20px 0 20px 0; ">
+					<div class = "col-xs-6">
+						<span id = "landingSection3Icon2" class = "glyphicon glyphicon-road landingSection3Icon"></span>
+					</div>
+					<div class = "col-xs-6"><h2>Whatever goals you have for yourself, keep them organized</h2></div>
+				</div>
+				<div class = "row" style = "padding: 20px 0 20px 0; ">
+					<div class = "col-xs-6">
+						<span id = "landingSection3Icon3" class = "glyphicon glyphicon-fire landingSection3Icon"></span>
+					</div>
+					<div class = "col-xs-6"><h2>Look at your progress over time, and get inspired to keep improving</h2></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+

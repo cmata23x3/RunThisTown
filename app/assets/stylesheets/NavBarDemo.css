@@ -1,0 +1,46 @@
+.modal { font-size: 14pt; }
+.modal h4{ font-size: 18pt; }
+
+.navbar { font-family: 'Sanchez', serif; }
+.navbar-nav li {
+    margin-top: 10px;
+    font-size: 14pt;
+    font-weight: bolder;
+}
+
+#extraInfo {
+    color: white;
+    margin-top: 15px;
+    margin-right: 20px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#extraInfo:hover {
+    opacity: 1;
+}
+.brand { float: left; margin-left: 20px; }
+.popover-title { font-family: 'Sanchez', serif; padding: 10px 30px; font-size: 14pt; }
+#routeFinderCont {
+    width: -moz-calc(100% - 279px - 15px - 40px - 141px);
+    width: -webkit-calc(100% - 279px - 15px - 40px - 141px);
+    width: -o-calc(100% - 279px - 15px - 40px - 141px);
+    width: calc(100% - 279px - 15px - 40px - 141px);
+}
+#routeAndFriendFinder {
+    width: -moz-calc(100% - 71px - 3px - 12px);
+    width: -webkit-calc(100% - 71px - 3px - 12px);
+    width: -o-calc(100% - 71px - 3px - 12px);
+    width: calc(100% - 71px - 3px - 12px);
+    max-width: 500px;
+}
+
+#searchContainer {
+
+    max-width: 604px;
+}
+
+#inputContainer {
+
+    display: inline-block;
+}

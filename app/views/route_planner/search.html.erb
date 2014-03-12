@@ -1,0 +1,33 @@
+<div class = "container" style = "height: 100%">
+	<div id = "routeSearchContainer" style = "margin-top: 70px; border-radius: 5px; width: 10px; height: 10px; background-color: rgba(66, 139, 202, 0.3); padding: 0; margin-left: auto; margin-right: auto; overflow: hidden; position: relative; ">
+		<% for route_id in @route_ids %>
+			<% route = RunRoute.find(route_id) %>
+			<% if route.user_id == current_user.id %>
+				<% next %>
+			<% end %>
+			<div class = "profRouteEntry well well-sm">
+				<div class = "profRunRouteInfo" style = "display: inline-block; width: 49%; ">
+					<p class = "profRouteName">Name: <span><%= route.name %></span></p>
+					<p class = "profRouteDistance">Distance Traveled: <span class = "profRouteDistanceVal"><%= route.distance %></span></p>
+					<p class = "profCaloriesBurned">Calories Burned: <span class = "profCaloriesBurnedVal"> FIX THIS</span></p>
+					<p class = "profRouteStart">Start: <span><%= route.locations[0].name %></span></p>
+					<p class = "profRouteEnd">End: <span><%= route.locations[-1].name %></span></p>
+				</div>
+				<div class = "profWaypointsContainer" style = "display: inline-block; width: 49%; height: 100%; position: absolute; top: 0; ">
+					<p style = "margin-top: 10px; text-align: center; " class = "profRouteDate">Date: <span><%= route.created_at.to_s %></span></p>
+					
+					<div class = "wptsList">
+						<legend><h4 style = "text-align: center; font-family: Sanchez Regular">Waypoints Visited:</h4></legend>
+						<ol>
+							<% if route.locations.size > 2 %>
+								<% (1..(route.locations.size - 2)).each do |i| %>
+									<li><%= route.locations[i].name %></li>
+								<% end %>
+							<% end %>
+						</ol>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

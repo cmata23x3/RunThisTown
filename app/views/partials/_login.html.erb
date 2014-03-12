@@ -1,0 +1,18 @@
+<div class="modal-body" style = "text-align: center">
+
+  <div style = 'display: inline-block; text-align: left; min-width: 450px;'>
+      <%= form_for(:user, :url => session_path(:user)) do |f| %>
+
+      <div><%= f.label :email, :style => "font-weight: normal" %>
+      <%= f.email_field :email, :autofocus => true, :autofocus => true , :class => "userInput" %></div>
+      <br>
+
+      <div><%= f.label :password, :style => "font-weight: normal" %>
+      <%= f.password_field :password , :class => "userInput" %></div>
+  </div>
+</div>
+<div class="modal-footer">
+  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+  <button type="button" class="btn btn-warning"><%= f.submit :style => "background-color: transparent; border:none; color: white", :value => "Log in" %></button>
+  <% end %>
+</div>

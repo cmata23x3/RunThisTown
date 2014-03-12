@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RunThisTown</title>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUpd0JH2ETsua4nzZ4VHqwf1IrEJaGhiY&sensor=true&libraries=places"></script>
+		<script type="text/javascript" src="http://geoxml3.googlecode.com/svn/branches/polys/geoxml3.js"></script>
+
+		<%= favicon_link_tag "RunThisTownIcon.ico" %>
+		<script type="text/javascript" src = "http://code.jquery.com/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src = "http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>	
+
+		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<%= csrf_meta_tags %>
+		<link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
+
+
+	</head>
+	<body>
+		<div id="naviBar"><%= render 'partials/navbar' %> </div>
+		<!-- <p class="notice"><%= notice %></p> --> <!-- ******These two lines alter the css styling*****-->
+      <!-- <p class="alert"><%= alert %></p> -->
+       <%= render 'partials/messages' %>
+		<%= yield %>
+	</body>
+</html>

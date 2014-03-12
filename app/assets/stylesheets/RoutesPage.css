@@ -1,0 +1,12 @@
+body {
+	font-family: Sanchez;
+}
+
+.profRouteEntry { position: relative; overflow: hidden; }
+.wptsList { 
+	height: -moz-calc(100% - 41px);
+	height: -webkit-calc(100% - 41px);
+	height: -o-calc(100% - 41px);
+	height: calc(100% - 41px);
+	overflow: auto;
+ }

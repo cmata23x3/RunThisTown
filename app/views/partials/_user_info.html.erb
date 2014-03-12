@@ -1,0 +1,25 @@
+<div class = "userContainer">
+	<div class = "userImgContainer" style = "width: 100px; height: 100px; overflow: hidden; float: left;">
+		<% if user.avatar_file_name == nil %>
+			<%= image_tag "ProfPic.jpg", :style => "width: 100%"%>
+		<% else %>
+			<%= image_tag user.avatar.url, :style => "width: 100%; vertical-align: center;"%>
+   		<% end %>
+	</div>
+	<span style = "display: inline-block; margin-left: 20px; margin-top: 36px; font-size: 22px; " class = "userUsernameSpan">
+		<% if friend_status == 'accepted' %>
+			<%= link_to user.get_name, {controller: "users", action: "view_friend", friend_id: user.id} %>
+		<% else %>
+			<%= user.get_name %>
+		<% end %>
+	</span>
+	<% if friend_status == 'accepted' %>
+		<%= button_to "Delete Friend", {controller: "friendships", action: "destroy", user_id: current_user.id, friend_id: user.id}, {type: "button", :id => "userDelFriendBtn", :class => "btn btn-warning", :style => "float: right; margin-top: 36px; margin-right: 10px;", :method => :post, :form => { style: "float: right" } } %>
+	<% elsif friend_status == nil %>
+		<%= button_to "Add Friend", {controller: "friendships", action: "create", user_id: current_user.id, friend_id: user.id}, {type: "button", :id => "userAddFriendBtn", :class => "btn btn-warning", :style => "float: right; margin-top: 36px; margin-right: 10px;", :method => :post, :form => { style: "float: right"} } %>
+	<% elsif friend_status == 'requested' %>
+		<button class = "btn btn-info" style = "float: right; margin-top: 36px; margin-right: 10px; cursor: default" disabled>Requested</button>
+	<% else %>
+		<%= link_to "Respond to Request", homepage_path, style: "float: right; margin-top: 42px; margin-right: 10px;" %>
+	<% end %>
+</div>

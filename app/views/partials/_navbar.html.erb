@@ -1,0 +1,113 @@
+<div class="modal fade" id = "creditsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "font-family: 'Sanchez', serif">
+  <div class="modal-dialog modal-dialog-center">
+    <div class="modal-content" style = "background-color: beige">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" style = "font-family: Sanchez, serif">Credits</h3>
+      </div>
+      <div class="modal-body">
+        <p>Thanks to all these awesome sources for helping make this website possible!</p><br>
+        <ul>
+        	<li><p><a href = "http://glyphicons.com">Glyphicons</a></p></li>
+        	<li><p><a href = "http://getbootstrap.com">Bootstrap</a></p></li>
+          <li><p><a href = "https://developers.google.com/maps/">Google Maps API</a></p></li>
+        	<li><p>Sarah Liu for her amazing photography!</p></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id = "loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "font-family: Sanchez Regular, serif; ">
+  <div class="modal-dialog modal-dialog-center" style = "width: 700px;">
+    <div class="modal-content" style = "background-color: beige">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style = "font-family: Sanchez Regular, serif">Log In</h4>
+      </div>
+      <div class="modal-body" style = "text-align: center">
+
+        <div style = 'display: inline-block; text-align: left; min-width: 450px;'>
+            <%= form_for(:user, :url => session_path(:user)) do |f| %>
+
+            <div><%= f.label :email, :style => "font-weight: normal" %>
+            <%= f.email_field :email, :autofocus => true, :autofocus => true , :class => "userInput" %></div>
+            <br>
+
+            <div><%= f.label :password, :style => "font-weight: normal" %>
+            <%= f.password_field :password , :class => "userInput" %></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-warning"><%= f.submit :style => "background-color: transparent; border:none; color: white", :value => "Log in" %></button>
+        <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<nav class = "navbar navbar-inverse navbar-fixed-top" style = "box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5); height: 60px; font-family: Sanchez, serif" role = "navigation" >
+	<div class = "navbar-header">
+		<button class = "navbar-toggle" type = "button" data-toggle="collapse" data-target = "#bsnavbar-collapse">
+			<span class = "sr-only">Toggle navigation</span>
+			<span class = "icon-bar"></span>
+			<span class = "icon-bar"></span>
+			<span class = "icon-bar"></span>
+		</button>
+		<div><%= link_to image_tag("RunThisTownLogo1.png", :style => "height: 48px; padding: 0; margin: 6px 20px 6px", :class => "navbar-brand"), root_path %></div>
+	</div>
+	<div class="collapse navbar-collapse" id="bs-navbar-collapse">
+		<div id = "searchContainer" class="navbar-form navbar-left" role="search">
+			<div id = "inputContainer" class="form-group" style = "margin-top: 10px;">
+    			<input type="text" id = "routeAndFriendFinder" class="form-control" placeholder="Find Routes" style = "border-radius: 5px 0 0 5px;">
+          <div class="btn-group">
+            <button type="button" id = "routePeopleDropdown" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style = "border-radius: 0 5px 5px 0; margin-left: -4px; width: 86px; ">
+              Routes <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a style = "cursor: pointer;" id = "findPeopleBtn">People</a></li>
+              <li><a style = "cursor: pointer;" id = "findRoutesBtn">Routes</a></li>
+            </ul>
+          </div>
+  		</div>
+  		<button id = "navSearchBtn" type="submit" class="btn btn-warning" style = "margin-top: 10px; margin-left:3px; position: fixed">Search</button>
+		</div>
+		<ul class = "nav navbar-nav navbar-right" style = "margin-right: 0; right: 0; top: 0; position: fixed">
+      <% if user_signed_in? then %>
+
+        <li><%= link_to current_user.first_name, homepage_path %></li>
+        <li>
+          <div class = "dropdown">
+            <span id = "extraInfo" class = "glyphicon glyphicon-cog" data-toggle="dropdown"></span>
+            <ul class="dropdown-menu pull-right" role="menu" style = "margin-right: 10px;">
+              <li role="presentation"><a id = "navHelpItem" role="menuitem" tabindex="-1" style = "cursor: pointer; display: none; " data-toggle="modal" data-target=".helpModal">Help</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" style = "cursor: pointer;" ><%= link_to 'My Profile', root_path %></a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" style = "cursor: pointer;" ><%= link_to 'Account Settings', edit_user_registration_path %></a></li>
+              <li id = "signOut" role="presentation"><a role="menuitem" tabindex="-1" style = "cursor: pointer;" ><%= link_to 'Sign Out', destroy_user_session_path %></a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a id = "creditsBtn" role="menuitem" tabindex="-1" style = "cursor: pointer;"  data-toggle="modal" data-target="#creditsModal">Credits</a></li>
+            </ul>
+          </div>
+        </li>
+
+      <% else %>
+        <li><a data-toggle="modal" data-target="#loginModal" style = "cursor: pointer">Log In</a></li>
+        <li>
+          <div class = "dropdown">
+            <span id = "extraInfo" class = "glyphicon glyphicon-cog" data-toggle="dropdown"></span>
+            <ul class="dropdown-menu pull-right" role="menu" style = "margin-right: 10px;">
+              <li role="presentation"><a role="menuitem" tabindex="-1" style = "cursor: pointer;" data-toggle="modal" data-target=".helpModal">Help</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a id = "creditsBtn" role="menuitem" tabindex="-1" style = "cursor: pointer;"  data-toggle="modal" data-target="#creditsModal">Credits</a></li>
+            </ul>
+          </div>
+        </li>
+    <% end %>
+		</ul>
+	</div>
+</nav>

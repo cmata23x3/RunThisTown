@@ -1,0 +1,119 @@
+<!-- Help Modal -->
+
+<!-- Delete Modal -->
+<div class="modal fade" id = "profDeleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "font-family: 'Sanchez', serif">
+  <div class="modal-dialog modal-dialog-center">
+    <div class="modal-content" style = "background-color: beige">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" style = "font-family: Sanchez, serif">Delete Route</h3>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this route?</p><br>
+      </div>
+      <div class="modal-footer">
+        <button id = "profConfirmDeleteRoute" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id = "profileContainer" class = "container">
+	<div class = "col-md-3 leftSection" >
+		<div style = "padding-top: 15px; padding-bottom: 15px; width: 100%; height: 100%">
+			<div id = "profPicCont" style = "position: relative; ">
+				<%= link_to edit_user_registration_path do %>
+					<div id = "profPicCover" style = "background-color: rgba(0, 0, 0, 0.5); position: absolute; width: 100%; height: 100%; opacity: 0; cursor:pointer; ">
+						<h3 style = "color: white; display: block; text-align: center; ">Change Picture</h3>
+					</div>
+				<% if current_user.avatar_file_name == nil %>
+					<%= image_tag "ProfPic.jpg", :style => "width: 100%"%>
+				<% else %>
+					<%= image_tag current_user.avatar.url, :style => "width: 100%"%>
+   				<% end %>
+   			<% end %>
+			</div>
+			<legend style = "border-color: grey; "><h1 id = "name" style = "text-align: center; margin-bottom: 15px; font-family: Sanchez"><%= current_user.first_name + " " + current_user.last_name%></h1></legend>
+			
+			<!-- <div class = "stat">
+				<span id = "goalsPlus" class = "statVal glyphicon glyphicon-plus" style = "position: absolute"></span><h2 style = "font-family: Sanchez; margin-top: 0">Goals</h2>
+				<div id = "newGoalContainer" style = "border-bottom: 1px solid grey; padding: 5px; padding-bottom: 0; overflow:hidden; height: 0">
+					<div id = "newGoalBtn" class="btn-group">
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					    Action <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu">
+					    <li><a href="#">Action</a></li>
+					    <li><a href="#">Another action</a></li>
+					    <li><a href="#">Something else here</a></li>
+					    <li class="divider"></li>
+					    <li><a href="#">Separated link</a></li>
+					  </ul>
+					</div>
+				</div>
+			</div> -->
+
+			<%= link_to friendships_new_path do %>
+				<button class = "btn btn-primary btn-block" style = "margin-bottom: 30px; ">My Friends</button>
+			<% end %>
+
+			<div class = "stat"><legend style = "border-bottom-color: grey; "><h2 style = "font-family: Sanchez; margin-top: 0; ">Stats</h2></legend></div>
+			<div id = "statContainer">
+				<div class = "stat"><p id = "totalDistanceStat" class = "statVal">0 mi</p> <%= image_tag "RunningMan.png", :id => "totalDistIcon", :style  => "width: 16px", :title => "Total distance run" %></div>
+
+				<div class = "stat"><p id = "longestRunStat" class = "statVal">0 mi</p><span id = "longestRunIcon" class = "glyphicon glyphicon-road" data-toggle = "tooltip" title = "Longest Run"></span></div>
+
+				<div class = "stat"><p id = "totalCalStat" class = "statVal">0 cal</p><span id = "totalCalIcon" class = "glyphicon glyphicon-fire" data-toggle = "tooltip" title = "Total Calories Burned"></span></div>
+
+				<% if current_user.weight == nil %>
+					<p style = "text-align: center">(To show calories, enter your weight in Account Settings)</p>
+				<% end %>
+			</div>
+
+			
+
+			<% if current_user.pending_friends.size > 0 %>
+				<div class = "stat"><legend style = "border-bottom-color: grey"><h2 style = "margin-top: 0; ">Pending Friends</h2></legend></div>
+				<% for friend in current_user.pending_friends %>
+					<div id = "pendingFriendsContainer">
+						<div>
+							<%= friend.get_name %>
+							<%= link_to "(Ignore)", {controller: "friendships", action: "destroy", user_id: current_user.id, friend_id: friend.id}, {:method => :post, style: 'float: right;'} %>
+							<%= link_to "(Accept)", {controller: "friendships", action: "update", user_id: current_user.id, friend_id: friend.id}, {:method => :post, style: 'float: right;'} %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class = "col-md-9 rightSection" style = "height: auto; ">
+		<div style = "padding-top: 15px; padding-bottom: 15px; width: 100%; height: 100%">
+			<h1 style = "text-align: center; font-family: Sanchez">My Routes</h1>
+			<div class = "routeContainer well" style = "margin-bottom: 0; ">
+				<legend style = "border-color: grey; "><h2 style = "text-align: center; font-family: Sanchez">Routes to run</h2></legend>
+				<div id = "routesToRunContainer">
+					<%= button_to "Create a new route", { controller: "route_planner", action: "new"}, {type: "button", id: "userDelFriendBtn", class: "btn btn-success btn-lg btn-block", style: "font-size: 18pt; margin-bottom: 10px; text-decoration: none;", :method => :get} %>
+					<!-- <button type="button" class="btn btn-success btn-lg btn-block" style = "font-size: 18pt; margin-bottom: 10px;"><%#= link_to 'Create a new route', routeplanner_path, :style => "color: white; text-decoration: none;" %></button> -->
+					<% current_user.run_routes.each do |route| %>
+						<% if !route.has_ran %>
+							<% @run_route = route %>
+							<%= render 'run_routes/run_route', :object => @run_route %>
+						<% end %>
+					<% end %>
+				</div>
+				<legend style = "border-color: grey; position: relative; "><h2 style = "text-align: center; font-family: Sanchez">Routes that I've run</h2><a id = "toggleRouteVisualization" style = "float: right; cursor: pointer; position: absolute; top: 5px; right: 5px; ">Show Graph</a></legend>
+				<div id = "routeVisualizationContainer"></div>
+				<div id = "routesRunContainer">
+					<% current_user.run_routes.each do |route| %>
+						<% if route.has_ran %>
+							<% @run_route = route %>
+							<%= render 'run_routes/ran_route', :object => @run_route %>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,96 @@
+<!-- Confirmation Modal -->
+	
+	<div class="modal fade" id = "confirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "font-family: Sanchez, serif">
+	  <div class="modal-dialog modal-dialog-center">
+	    <div class="modal-content" style = "background-color: beige">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h3 class="modal-title" style = "font-family: Sanchez, serif">Confirm</h3>
+	      </div>
+	      <div class="modal-body">
+	        <input id = "routeNameInput" style = "border: 1px solid #ccc; margin-left: auto; margin-right: auto; display: block; padding: 5px; font-family: Roboto, Sanchez, serif; width: 400px; border-radius: 5px; font-weight: lighter" placeholder = "Input name of your route here"></input><br>
+	      </div>
+	      <div class="modal-footer">
+	      	<button id = "confirmRouteBtn" type="button" class="btn btn-success">Submit</button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade helpModal" id = "routePlannerHelpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "font-family: Sanchez, serif">
+	  <div class="modal-dialog modal-dialog-center">
+	    <div class="modal-content" style = "background-color: beige">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h3 class="modal-title" style = "font-family: Sanchez, serif">Using the Route Planner</h3>
+	      </div>
+	      <div class="modal-body">
+	        <p>The Route Planner helps you find out what route you want to take when you go on your run, based on the parts of the city that you want to pass by.</p>
+	        <ol>
+	        	<li>
+	        		<p>First thing you should do is decide how you'd like us to order the points for you, by clicking the <%= image_tag "RoutePlannerOrderBtn.JPG" %> button.</p>
+	        		<p>There are 2 different order modes:</p>
+			        <ul>
+			        	<li><b>Custom - </b> use this mode if you know exactly what order you want to visit different parts of the city.  Whatever order you create the points will be the order of your route.</li>
+			        	<li><b>Shortest Path - </b>After you input your points and click the <%= image_tag "RoutePlannerShowPathBtn.JPG" %> button, we will reorder your points (other than start and end) such that your run will be as short as possible</li>
+			        </ul>
+	        	</li>
+	        	<li>
+	        		<p>After choosing the order type, you can start inputting the points</p>
+		        	<p>Points are added to you route by either typing them into the input box that says "Enter a location" on the map, and then clicking the <%= image_tag "RoutePlannerAddPointBtn.JPG" %> button, or simply clicking directly on the map where you want your point.</p>
+	        	</li>
+		        <p><b>Note: </b>You can always change a mistake in the "Your Route" section, either by deleting a point by clicking the x to the right of the point, or the clear button to start over. You can also change your mind about the order at any point until you click the <%= image_tag "RoutePlannerShowPathBtn.JPG" %> button. In addition, all of the entries in the "Your route" section are input boxes, meaning you can edit them.  However, this is not recommended, as the addresses could be less accurate.</p>
+		        <li>
+		        	<p>After you've created a route, and want to see what the path looks like, click the <%= image_tag "RoutePlannerShowPathBtn.JPG" %> button.  If you're happy with the route, you can click the <%= image_tag "RoutePlannerSubmitRouteBtn.JPG" %> button.  Otherwise, you can press the <%= image_tag "RoutePlannerClearRouteBtn.JPG" %> button to start over, or drag the path to edit the route right in the map.</p>
+		        </li>
+	        </ol>
+		        
+	      </div>
+	      <div class="modal-footer">
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<input id = "input" class = "controls">
+	<span id = "buttonContainer" class = "controls">
+		<button class = "btn btn-warning controls btnControls" id = "addPointBtn" style = "outline: none;"><!-- <i class = "icon-search icon-white"></i> -->Add Point</button>
+		<button class = "btn btn-warning controls btnControls last" id = "createLoopBtn" style = "outline: none; box-shadow: none; " disabled>Create Loop</button>
+	</span>
+	<div id="map" class = "mainElement" style = "margin-top: 60px"></div>
+	<div  class = "mainElement" id = "locList" style = "margin-top: 60px">
+		<h2 style = "text-align: center; font-family: Sanchez-Regular">Your route</h2>
+		<div class="btnContainer">
+			<div style = "height: 34px">
+				<div class = "col-xs-6" style = "padding-left: 0; ">
+					<div class="btn-group btn-block">
+					  <button id = "orderBtnDropdown" class="btn btn-warning dropdown-toggle btn-block" data-toggle="dropdown" style = "outline: none; font-family: Sanchez, serif">
+					    Order: Custom
+					    <span class="caret" style = "border-top: 4px solid white"></span>
+					  </button>
+					  <ul class="dropdown-menu" role = "menu">
+					  	<li><a id = "customOrderBtn" style = "cursor: pointer">Custom</a></li>
+					  	<!-- <li><a id = "autoOrderBtn" style = "cursor: pointer">Auto</a></li> -->
+					  	<li><a id = "shortestPathOrderBtn" style = "cursor: pointer">Shortest Path</a></li>
+					  </ul>
+					</div>
+				</div>
+				<div class = "col-xs-6" style = "padding-right: 0; ">
+					<button id = "clearRoute" class = "btn btn-danger btn-block" disabled>Clear Route</button>
+				</div>
+			</div>
+		</div>
+		<div id = "routeListContainer">
+			<div id = "routeList" style = "height: 50%; overflow: auto; position: relative"></div>
+			<div id = "directionsList" style = "height: 50%; overflow: auto; "></div>
+		</div>
+		<div id = "routeLengthContainer" style = "font-size: 14pt; padding: 10px; ">Route Length: <span id = "routeLength" style = "float: right">0 mi</span></div>
+		<div class = "btnContainer">
+			<button class = "btn btn-primary btn-block" id = "pathCreator" style = "outline: none; " disabled>Show Path</button>
+			<button id = "createRouteBtn" class = "btn btn-success btn-block" data-toggle="modal" style = "margin-top: 5px;" data-target="#confirmationModal" disabled>Submit Route</button>
+		</div>
+	</div>
+
+</body>
